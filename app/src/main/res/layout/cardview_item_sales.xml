@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_height="200sp"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_item_sales"
+    app:cardCornerRadius="10dp"
+    app:cardUseCompatPadding="true"
+    android:elevation="5dp"
+    android:background="@color/purple_200"
+    app:cardBackgroundColor="@color/background_card_view"
+    app:cardElevation="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtItemCode"
+            android:text="txtItemCode"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:textAllCaps="true"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtItemName"
+            android:layout_toEndOf="@+id/txtItemCode"
+            android:textSize="18sp"
+            android:text="Item Name"
+            android:layout_marginStart="10dp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lblPrice"
+            android:layout_below="@+id/txtItemCode"
+            android:text="Harga Jual"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="10dp"
+            />
+
+        <TextView
+            android:id="@+id/txtPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtItemName"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="4dp"
+            android:layout_toEndOf="@+id/lblPrice"
+            android:text="txtPrice"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textAlignment="textEnd"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lblUnit"
+            android:layout_below="@+id/lblPrice"
+            android:text="Satuan"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"/>
+
+        <TextView
+            android:id="@+id/txtUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtPrice"
+            android:layout_marginStart="54dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/lblUnit"
+            android:text="txtUnit"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

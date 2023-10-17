@@ -10,4 +10,6 @@
     <string name="menu_home">Penjualan</string>
     <string name="menu_gallery">Data Barang</string>
     <string name="menu_slideshow">Kelompok Barang</string>
+
+    <string name="button_search_item_purple">Search</string>
 </resources>
