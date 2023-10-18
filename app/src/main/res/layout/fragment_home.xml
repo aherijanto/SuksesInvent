@@ -13,32 +13,34 @@
 
         <EditText
             android:layout_marginTop="10dp"
-            android:layout_width="280dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/txtSearchItem"
             android:textSize="18sp"
             android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:maxLength="30"
             android:background="@drawable/rounded_textbox_search"
             android:textStyle="bold"
-            android:paddingStart="5dp"
+            android:paddingStart="15dp"
             tools:ignore="RtlSymmetry"
             android:text=""/>
 
         <Button
             android:id="@+id/btnSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/txtSearchItem"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_toEndOf="@+id/txtSearchItem"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="3dp"
             android:text="@string/button_search_item_purple" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/rvItemSales"
-            android:layout_below="@+id/txtSearchItem"
+            android:layout_below="@+id/btnSearch"
             android:layout_marginTop="15sp"/>
 
     </RelativeLayout>

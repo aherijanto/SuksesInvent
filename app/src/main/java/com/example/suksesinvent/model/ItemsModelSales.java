@@ -3,10 +3,24 @@ package com.example.suksesinvent.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 public class ItemsModelSales implements Parcelable {
     private String _itemCode;
     private String _itemName;
     private int _itemPrice;
+    private String _itemUnit;
+    private double _itemQTY;
+
+
+    public double get_itemQTY() {
+        return _itemQTY;
+    }
+
+    public void set_itemQTY(double _itemQTY) {
+        this._itemQTY = _itemQTY;
+    }
+
 
     public String get_itemUnit() {
         return _itemUnit;
@@ -16,8 +30,6 @@ public class ItemsModelSales implements Parcelable {
         this._itemUnit = _itemUnit;
     }
 
-    private String _itemUnit;
-
     public ItemsModelSales(){
     }
 
@@ -26,6 +38,7 @@ public class ItemsModelSales implements Parcelable {
         _itemName = in.readString();
         _itemPrice = in.readInt();
         _itemUnit = in.readString();
+        _itemQTY = in.readDouble();
     }
 
     @Override
@@ -34,6 +47,7 @@ public class ItemsModelSales implements Parcelable {
         dest.writeString(_itemName);
         dest.writeInt(_itemPrice);
         dest.writeString(_itemUnit);
+        dest.writeDouble(_itemQTY);
     }
 
     @Override
@@ -77,13 +91,23 @@ public class ItemsModelSales implements Parcelable {
         this._itemPrice = _itemPrice;
     }
 
-
-
-    public ItemsModelSales(String itemCode_,String itemName_,Integer itemPrice_, String itemUnit_){
+    public ItemsModelSales(String itemCode_,String itemName_,Integer itemPrice_, String itemUnit_,double itemQTY_){
         this._itemCode = itemCode_;
         this._itemName = itemName_;
         this._itemPrice = itemPrice_;
         this._itemUnit = itemUnit_;
+        this._itemQTY = itemQTY_;
+    }
+
+    public double setGrandTotal(ArrayList<ItemsModelSales> myList){
+        double grandtot = 0;
+        for(int i=0;i<myList.size();i++){
+            double qty = myList.get(i).get_itemQTY();
+            double price = myList.get(i).get_itemPrice();
+            double subtotal = qty*price;
+            grandtot = grandtot+subtotal;
+        }
+        return grandtot;
     }
 
 }

@@ -1,9 +1,12 @@
 package com.example.suksesinvent;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.suksesinvent.ui.home.HomeFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -32,8 +35,16 @@ public class MainActivity extends AppCompatActivity {
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                if(HomeFragment.dataCart.size() == 0){
+                    Snackbar.make(view, "Sorry, No Data", Snackbar.LENGTH_LONG)
+                            .setAction("Cart List", null).show();
+                }else{
+                    Bundle myBundleCart = new Bundle();
+                    myBundleCart.putParcelableArrayList("MY_CART", HomeFragment.dataCart);
+                    Intent myIntent = new Intent(MainActivity.this,CartActivity.class);
+                    myIntent.putExtras(myBundleCart);
+                    startActivity(myIntent);
+                }
             }
         });
         DrawerLayout drawer = binding.drawerLayout;
@@ -62,4 +73,23 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
+//    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            if(dataCart.size() == 0){
+//                Snackbar.make(view, "Sorry, No Data", Snackbar.LENGTH_LONG)
+//                        .setAction("Cart List", null).show();
+//            }else{
+//                Bundle myBundleCart = new Bundle();
+//                myBundleCart.putParcelableArrayList("MY_CART",dataCart);
+//                Intent myIntent = new Intent(MainActivity.this,CartActivity.class);
+//                myIntent.putExtras(myBundleCart);
+//                startActivity(myIntent);
+//            }
+//
+//        }
+//    });
 }

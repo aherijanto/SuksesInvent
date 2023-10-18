@@ -12,4 +12,6 @@
     <string name="menu_slideshow">Kelompok Barang</string>
 
     <string name="button_search_item_purple">Search</string>
+    <string name="cart_name">Keranjang Belanja</string>
+    <string name="txtItemCode">txtItemCode</string>
 </resources>

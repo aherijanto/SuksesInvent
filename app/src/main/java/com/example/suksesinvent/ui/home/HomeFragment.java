@@ -34,6 +34,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView rvItemList;
     private ItemSearchAdapter adapterItemList;
     public static ArrayList<ItemsModelSales> dataItemList;
+    public static ArrayList<ItemsModelSales> dataCart = new ArrayList<>();
     private EditText txtSearchItem;
     private Button btnSearchItem;
 
@@ -48,7 +49,7 @@ public class HomeFragment extends Fragment {
         txtSearchItem = binding.txtSearchItem;
         btnSearchItem = binding.btnSearch;
         rvItemList = binding.rvItemSales;
-//
+
         dataItemList = new ArrayList<>();
         adapterItemList = new ItemSearchAdapter(getContext(),dataItemList);
         rvItemList.setLayoutManager(new LinearLayoutManager(getContext()));
