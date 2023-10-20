@@ -1,4 +1,5 @@
 package com.example.suksesinvent.adapters;
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import android.text.Editable;
@@ -36,11 +37,11 @@ public class ItemSearchAdapter extends RecyclerView.Adapter<ItemSearchAdapter.It
     }
 
     public class ItemSearchViewHolder extends RecyclerView.ViewHolder  {
-        private TextView _textItemCode;
-        private TextView _textItemName;
-        private TextView _textItemPrice;
-        private TextView _textItemUnit;
-        private EditText _textItemQTY;
+        private final TextView _textItemCode;
+        private final TextView _textItemName;
+        private final TextView _textItemPrice;
+        private final TextView _textItemUnit;
+        private final EditText _textItemQTY;
         private CardView card;
 
         public ItemSearchViewHolder(@NonNull View itemView) {
@@ -51,6 +52,7 @@ public class ItemSearchAdapter extends RecyclerView.Adapter<ItemSearchAdapter.It
             _textItemUnit = (TextView)  itemView.findViewById((com.example.suksesinvent.R.id.txtUnit));
             _textItemQTY = (EditText) itemView.findViewById(R.id.txtQTY);
             card = (CardView) itemView.findViewById(com.example.suksesinvent.R.id.card_item_sales);
+            _textItemQTY.setText("0");
             _textItemQTY.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -58,7 +60,7 @@ public class ItemSearchAdapter extends RecyclerView.Adapter<ItemSearchAdapter.It
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    if (charSequence.length() == 0) {
+                    if(charSequence.length() == 0) {
                     } else {
                         itemList.get(getAdapterPosition()).set_itemQTY(Double.parseDouble(_textItemQTY.getText().toString()));
                     }
@@ -107,6 +109,7 @@ public class ItemSearchAdapter extends RecyclerView.Adapter<ItemSearchAdapter.It
         return new ItemSearchAdapter.ItemSearchViewHolder(view);
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void onBindViewHolder(@NonNull ItemSearchAdapter.ItemSearchViewHolder holder, int position) {
 //        Random rnd = new Random();
@@ -114,7 +117,7 @@ public class ItemSearchAdapter extends RecyclerView.Adapter<ItemSearchAdapter.It
 //        holder.card.setCardBackgroundColor(currentColor);
         holder._textItemCode.setText(itemList.get(position).get_itemCode());
         holder._textItemName.setText(itemList.get(position).get_itemName());
-        holder._textItemPrice.setText(String.format("%,d",itemList.get(position).get_itemPrice()).toString());
+        holder._textItemPrice.setText(String.format("%,d",itemList.get(position).get_itemPrice()));
         holder._textItemUnit.setText(itemList.get(position).get_itemUnit());
         holder._textItemQTY.setText(String.valueOf(itemList.get(position).get_itemQTY()));
     }

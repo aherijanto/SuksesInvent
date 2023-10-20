@@ -14,4 +14,23 @@
     <string name="button_search_item_purple">Search</string>
     <string name="cart_name">Keranjang Belanja</string>
     <string name="txtItemCode">txtItemCode</string>
+    <string name="_0">0</string>
+    <string name="plus_sign">+</string>
+    <string name="qty">QTY</string>
+    <string name="txtunit">txtUnit</string>
+    <string name="satuan">SATUAN</string>
+    <string name="txtprice">txtPrice</string>
+    <string name="harga">HARGA</string>
+    <string name="item_name">Item Name</string>
+    <string name="txtitemcode">txtItemCode</string>
+    <string name="kode_barang">Kode Barang</string>
+    <string name="nama_barang">Nama Barang</string>
+    <string name="harga_beli">Harga Beli</string>
+    <string name="harga_jual">Harga Jual</string>
+    <string name="harga_grosir"> + Harga Grosir</string>
+    <string name="_1">Satuan</string>
+    <string name="contoh_kg_pak">Contoh : KG, PAK</string>
+    <string name="harga_grosir1">Harga Grosir</string>
+    <string name="qty_grosir">QTY Grosir</string>
+    <string name="_nol">0</string>
 </resources>

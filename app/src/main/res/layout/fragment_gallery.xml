@@ -1,22 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    tools:context=".ui.gallery.GalleryFragment">
+    android:layout_width="match_parent"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    >
 
     <TextView
-        android:id="@+id/text_gallery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_marginTop="10dp"
+        android:textAllCaps="true"
+        android:labelFor="@+id/master_txtItemCode"
+        android:id="@+id/lblItemCode"
+        android:text="@string/kode_barang"
+        android:textColor="@color/design_default_color_primary"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/master_txtItemCode"
+        android:layout_below="@+id/lblItemCode"
+        android:layout_marginTop="5dp"
+        android:inputType="textCapSentences"
+        android:autofillHints=""
+        android:hint="Dikosongkan berarti otomatis"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAllCaps="true"
+        android:layout_below="@+id/master_txtItemCode"
+        android:labelFor="@+id/master_txtItemName"
+        android:id="@+id/lblItemName"
+        android:text="@string/nama_barang"
+        android:textColor="@color/design_default_color_primary"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textAllCaps="true"
+        android:id="@+id/master_txtItemName"
+        android:layout_below="@+id/lblItemName"
+        android:layout_marginTop="5dp"
+        android:autofillHints="ItemName"
+        android:inputType="textCapSentences" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/master_txtItemName"
+        android:labelFor="@+id/master_txtBuyingPrice"
+        android:id="@+id/lblBuyingPrice"
+        android:text="@string/harga_beli"
+        android:textColor="@color/design_default_color_primary"
+        android:textAllCaps="true"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/master_txtBuyingPrice"
+        android:layout_below="@+id/lblBuyingPrice"
+        android:layout_marginTop="5dp"
+        android:autofillHints="ItemName"
+        android:inputType="number" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAllCaps="true"
+        android:layout_below="@+id/master_txtBuyingPrice"
+        android:labelFor="@+id/master_txtSellingPricePrice"
+        android:id="@+id/lblSellingPrice"
+        android:text="@string/harga_jual"
+        android:textColor="@color/design_default_color_primary"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/master_txtSellingPrice"
+        android:layout_below="@+id/lblSellingPrice"
+        android:layout_marginTop="5dp"
+        android:autofillHints="ItemName"
+        android:inputType="number"/>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAllCaps="true"
+        android:layout_below="@+id/master_txtSellingPrice"
+        android:labelFor="@+id/master_txtSatuan"
+        android:id="@+id/lblSatuan"
+        android:text="@string/_1"
+        android:textColor="@color/design_default_color_primary"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/master_txtSatuan"
+        android:layout_below="@+id/lblSatuan"
+        android:layout_marginTop="5dp"
+        android:autofillHints="ItemName"
+        android:hint="@string/contoh_kg_pak"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignEnd="@+id/master_txtSellingPrice"
+        android:layout_below="@id/master_txtSatuan"
+        android:id="@+id/btnGrocierPrice"
+        android:text="@string/harga_grosir"
+        android:backgroundTint="@color/material_dynamic_tertiary50"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnGrocierPrice">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMasterGrocierPrice"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            />
+    </LinearLayout>
+
+
+
+</RelativeLayout>
