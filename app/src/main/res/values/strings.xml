@@ -39,4 +39,9 @@
     <string name="dikosongkan_berarti_otomatis">Dikosongkan berarti otomatis</string>
     <string name="save_item">SAVE</string>
     <string name="qty_itemdata">Qty</string>
+    <string name="input_item">Input Inventory</string>
+    <string name="daftar_inventory">Daftar Inventory</string>
+    <string name="save_order">Save Order</string>
+    <string name="harga_jual_itemlist">Harga Jual</string>
+    <string name="harga_beli_itemlist">Harga Beli</string>
 </resources>

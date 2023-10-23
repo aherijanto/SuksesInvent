@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_item_search"
+    app:cardCornerRadius="10dp"
+    app:cardUseCompatPadding="true"
+    android:elevation="5dp"
+    android:background="@color/purple_200"
+    app:cardBackgroundColor="@color/background_card_view"
+    app:cardElevation="5dp"
+    android:paddingBottom="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtItemCode"
+            android:text="@string/txtitemcode"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:textAllCaps="true"
+            android:textColor="@color/purple_700"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtItemName"
+            android:layout_below="@+id/txtItemCode"
+            android:textSize="20sp"
+            android:text="@string/item_name"
+            android:layout_marginStart="10dp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/purple_500"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lblPrice"
+            android:layout_below="@+id/txtItemName"
+            android:text="@string/harga_jual_itemlist"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="10dp"
+            android:textAllCaps="true"
+            />
+
+        <TextView
+            android:id="@+id/txtPrice"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtItemName"
+            android:layout_marginStart="63dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/lblPrice"
+            android:text="@string/txtprice"
+            android:textAlignment="textEnd"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingEnd="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lblBuyingPrice"
+            android:layout_below="@+id/lblPrice"
+            android:text="@string/harga_beli_itemlist"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="10dp"
+            android:textAllCaps="true"
+            />
+        <TextView
+            android:id="@+id/txtBuyingPrice"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtPrice"
+            android:layout_marginStart="63dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/lblPrice"
+            android:text="@string/txtprice"
+            android:textAlignment="textEnd"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingEnd="5dp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lblUnit"
+            android:layout_below="@+id/lblBuyingPrice"
+            android:text="@string/satuan"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"/>
+
+        <TextView
+            android:id="@+id/txtUnit"
+            android:layout_width="101dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtBuyingPrice"
+            android:layout_marginStart="102dp"
+            android:layout_marginTop="3dp"
+            android:layout_toEndOf="@+id/lblUnit"
+            android:text="@string/txtunit"
+            android:textAlignment="textEnd"
+            android:textAllCaps="true"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingEnd="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lblQTY"
+            android:layout_below="@+id/lblUnit"
+            android:text="@string/qty"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+
+            />
+
+        <TextView
+            android:id="@+id/txtQTY"
+            android:layout_width="106dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtUnit"
+            android:layout_marginStart="135dp"
+            android:layout_marginTop="4dp"
+            android:layout_toEndOf="@+id/lblQTY"
+            android:maxLength="30"
+            android:paddingStart="10dp"
+            android:paddingEnd="5dp"
+            android:text="@string/_0"
+            android:textAlignment="textEnd"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

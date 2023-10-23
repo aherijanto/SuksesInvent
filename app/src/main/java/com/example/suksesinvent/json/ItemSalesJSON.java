@@ -18,6 +18,8 @@ public class ItemSalesJSON {
         final String mItemName="i_name";
         final String mItemPrice="i_sell";
         final String mItemSatuan = "i_unit";
+        final String mItemQty = "i_qty";
+        final String mItemBuyingPrice = "i_cogs";
 
         JSONArray ItemListJSONArray = new JSONArray(itemListJSON);
         JSONObject myJSONObject;
@@ -28,6 +30,8 @@ public class ItemSalesJSON {
             mdataItemList.set_itemCode(myJSONObject.getString(mItemCode));
             mdataItemList.set_itemName((myJSONObject.getString(mItemName)));
             mdataItemList.set_itemPrice(myJSONObject.getInt(mItemPrice));
+            mdataItemList.set_itemBuyingPrice(myJSONObject.getInt(mItemBuyingPrice));
+            mdataItemList.set_itemQTY(myJSONObject.getDouble(mItemQty));
             mdataItemList.set_itemUnit(myJSONObject.getString(mItemSatuan));
             dataItemList.add(mdataItemList);
         }

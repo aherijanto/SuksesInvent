@@ -7,7 +7,7 @@
             android:id="@+id/action_save"
             android:icon="@drawable/ic_save_cart_foreground"
             app:showAsAction="ifRoom"
-            android:title="Save Order">
+            android:title="@string/save_order">
         </item>
 
 
