@@ -78,17 +78,13 @@ public class HomeFragment extends Fragment {
     }
 
     public class FetchItemList extends AsyncTask<String,Void,ArrayList<ItemsModelSales>> {
-
         @Override
         protected ArrayList<ItemsModelSales> doInBackground(String... params) {
-
-            URL ItemDataUrl = Connection.buildURL("https://senang.mimoapps.xyz/apis/getitemlist_sukses.php?itemname=" + txtSearchItem.getText().toString());
+            URL ItemDataUrl = Connection.buildURL("https://mimoapps.xyz/sukses/apis/getitemlist_sukses.php?itemname=" + txtSearchItem.getText().toString());
             //https://senang.mimoapps.xyz/apis/getlistitems.php?itemname=
             try {
                 String ItemListResponse = Connection.getResponseFromHttpUrl(ItemDataUrl);
-
                 return ItemSalesJSON.GetItemList(getActivity().getApplicationContext(), ItemListResponse);
-
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;

@@ -28,7 +28,7 @@
         android:layout_marginTop="5dp"
         android:inputType="textCapSentences"
         android:autofillHints=""
-        android:hint="Dikosongkan berarti otomatis"/>
+        />
 
     <TextView
         android:layout_width="match_parent"
@@ -92,8 +92,6 @@
         android:autofillHints="ItemName"
         android:inputType="number"/>
 
-
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -112,33 +110,63 @@
         android:id="@+id/master_txtSatuan"
         android:layout_below="@+id/lblSatuan"
         android:layout_marginTop="5dp"
+
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAllCaps="true"
+        android:layout_below="@+id/master_txtSatuan"
+        android:labelFor="@+id/master_txtS"
+        android:id="@+id/lblQTY"
+        android:text="@string/qty_itemdata"
+        android:textColor="@color/design_default_color_primary"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/master_txtQTY"
+        android:layout_below="@+id/lblQTY"
+        android:layout_marginTop="5dp"
         android:autofillHints="ItemName"
-        android:hint="@string/contoh_kg_pak"/>
+        android:inputType=""/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_alignEnd="@+id/master_txtSellingPrice"
-        android:layout_below="@id/master_txtSatuan"
+        android:layout_below="@id/master_txtQTY"
         android:id="@+id/btnGrocierPrice"
         android:text="@string/harga_grosir"
         android:backgroundTint="@color/material_dynamic_tertiary50"
         />
-    <LinearLayout
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/btnGrocierPrice">-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMasterGrocierPrice"
         android:layout_width="match_parent"
+        android:layout_height="112dp"
+        android:layout_below="@id/btnGrocierPrice"
+        android:orientation="horizontal"
+        android:windowSoftInputMode="adjustPan|adjustResize" />
+<!--    </LinearLayout>-->
+
+    <Button
+        android:id="@+id/btnSaveItem"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnGrocierPrice">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvMasterGrocierPrice"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:orientation="horizontal"
-            android:scrollbars="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            />
-    </LinearLayout>
-
+        android:layout_below="@+id/rvMasterGrocierPrice"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="1dp"
+        android:text="@string/save_item"
+        />
 
 
 </RelativeLayout>

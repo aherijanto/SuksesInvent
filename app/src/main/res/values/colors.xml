@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background_card_view">#F1EDFA</color>
     <color name="background_button_add">#A63535</color>
+    <color name="background_card_grocier">#eae2b7</color>
 
 </resources>

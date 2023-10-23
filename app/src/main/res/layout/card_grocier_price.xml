@@ -9,11 +9,13 @@
     app:cardCornerRadius="10dp"
     app:cardUseCompatPadding="true"
     android:elevation="5dp"
-    android:background="@color/purple_200"
-    app:cardBackgroundColor="@color/background_card_view"
+    android:background="@color/teal_700"
+    app:cardBackgroundColor="@color/background_card_grocier"
     app:cardElevation="5dp"
     android:layout_marginStart="10dp"
-    android:layout_marginEnd="10dp">
+    android:layout_marginEnd="10dp"
+    android:paddingBottom="20dp"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,7 +30,8 @@
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:text="@string/qty_grosir"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/txtQTYGrosir"
@@ -39,7 +42,8 @@
             android:paddingEnd="5dp"
             android:text="@string/_nol"
             android:textAlignment="textEnd"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/lblHargaGrosir"
@@ -48,7 +52,8 @@
             android:text="@string/harga_grosir1"
             android:layout_below="@+id/lblQtyGrosir"
             android:layout_marginTop="5dp"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/txtHargaGrosir"
@@ -61,6 +66,8 @@
             android:textSize="16sp"
             android:text="@string/_nol"
             android:textAlignment="textEnd"
-            android:paddingEnd="5dp"/>
+            android:paddingEnd="5dp"
+            tools:ignore="RtlSymmetry"
+            android:textColor="@color/black"/>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

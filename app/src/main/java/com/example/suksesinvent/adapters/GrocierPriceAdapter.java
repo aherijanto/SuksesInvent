@@ -45,7 +45,7 @@ public class GrocierPriceAdapter extends RecyclerView.Adapter<GrocierPriceAdapte
     public void onBindViewHolder(GrocierPriceAdapter.GrocierPriceHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder._qtyGrocier.setText(String.valueOf((double) GrocierList.get(position).getItemQty()));
-        holder._priceGrocier.setText(String.valueOf((double) GrocierList.get(position).getItemPrice()));
+        holder._priceGrocier.setText(String.format("%,d",((int) GrocierList.get(position).getItemPrice())));
 
 //        holder.txtItemName1.setText(itemList1.get(position).get_itemName());
 //        holder.txtItemPrice1.setText(String.format("%,d",(int)itemList1.get(position).get_itemPrice()));
