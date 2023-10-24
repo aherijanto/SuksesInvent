@@ -41,7 +41,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
         private final TextView _textItemBuyingPrice;
         private final TextView _textItemSellingPrice;
         private final TextView _textItemUnit;
-        private final EditText _textItemQTY;
+        private final TextView _textItemQTY;
         private CardView card;
 
         public ItemListViewHolder(@NonNull View itemView) {
@@ -51,35 +51,35 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
             _textItemSellingPrice = (TextView) itemView.findViewById(com.example.suksesinvent.R.id.txtPrice);
             _textItemBuyingPrice = (TextView) itemView.findViewById(R.id.txtBuyingPrice);
             _textItemUnit = (TextView)  itemView.findViewById((com.example.suksesinvent.R.id.txtUnit));
-            _textItemQTY = (EditText) itemView.findViewById(R.id.txtQTY);
+           _textItemQTY = (TextView) itemView.findViewById(R.id.txtQTY);
 
             card = (CardView) itemView.findViewById(R.id.card_item_search);
 
-           // card.setOnClickListener(new View.OnClickListener(){
-//                @Override
-//                public void onClick(View view) {
-//                    int pos = getAdapterPosition();
-//                    if(pos!=RecyclerView.NO_POSITION){
-////                        ItemsModelSales clickeddataItem = itemListmimo.get(pos);
-////                        String myitemcode = clickeddataItem.get_itemCode();
-////                        String myitemname = clickeddataItem.get_itemName();
-////                        String myitemsatuan = clickeddataItem.get_itemUnit();
-////                        int myitemprice = clickeddataItem.get_itemPrice();
-////                        double myitemqty = clickeddataItem.get_itemQTY();
-////
-////                        ItemsModelSales ssetOrderCart = new ItemsModelSales();
-////                        ssetOrderCart.set_itemCode(myitemcode);
-////                        ssetOrderCart.set_itemName(myitemname);
-////                        ssetOrderCart.set_itemPrice(myitemprice);
-////                        ssetOrderCart.set_itemQTY(myitemqty);
-////                        ssetOrderCart.set_itemUnit(myitemsatuan);
-////
-////                        HomeFragment.dataCart.add(ssetOrderCart);
-//                        Snackbar.make(view, "Position is : " + pos, Snackbar.LENGTH_LONG).show();
-//                        //System.out.println(HomeFragment.dataCart.get(0));
-//                    }
-//                }
-//            });
+           card.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    int pos = getAdapterPosition();
+                    if(pos!=RecyclerView.NO_POSITION){
+//                        ItemsModelSales clickeddataItem = itemListmimo.get(pos);
+//                        String myitemcode = clickeddataItem.get_itemCode();
+//                        String myitemname = clickeddataItem.get_itemName();
+//                        String myitemsatuan = clickeddataItem.get_itemUnit();
+//                        int myitemprice = clickeddataItem.get_itemPrice();
+//                        double myitemqty = clickeddataItem.get_itemQTY();
+//
+//                        ItemsModelSales ssetOrderCart = new ItemsModelSales();
+//                        ssetOrderCart.set_itemCode(myitemcode);
+//                        ssetOrderCart.set_itemName(myitemname);
+//                        ssetOrderCart.set_itemPrice(myitemprice);
+//                        ssetOrderCart.set_itemQTY(myitemqty);
+//                        ssetOrderCart.set_itemUnit(myitemsatuan);
+//
+//                        HomeFragment.dataCart.add(ssetOrderCart);
+                        Snackbar.make(view, "Position is : " + pos, Snackbar.LENGTH_LONG).show();
+                        //System.out.println(HomeFragment.dataCart.get(0));
+                    }
+                }
+            });
         }
     }
 

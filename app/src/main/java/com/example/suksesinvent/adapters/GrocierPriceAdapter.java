@@ -86,7 +86,10 @@ public class GrocierPriceAdapter extends RecyclerView.Adapter<GrocierPriceAdapte
     public void onItemClick(int position) {
         onClick.onItemClick(position);
     }
-
+    public void onItemRemoved(int position, GrocierPriceAdapter mimoAdapter){
+        mimoAdapter.notifyItemRemoved(position);
+        notifyItemRangeChanged(position,GrocierList.size());
+    }
     public class GrocierPriceHolder extends RecyclerView.ViewHolder {
 
         private TextView _qtyGrocier;

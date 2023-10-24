@@ -50,7 +50,8 @@ public class Connection {
         }
     }
 
-    public void postJSON(String address, String jsonData) throws IOException {
+    public String postJSON(String address, String jsonData) throws IOException {
+        final String[] responsepost = new String[1];
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -71,13 +72,18 @@ public class Connection {
 
                     Log.i("STATUS", String.valueOf(conn.getResponseCode()));
                     Log.i("MSG" , conn.getResponseMessage());
-
+                    responsepost[0] = String.valueOf(conn.getResponseCode());
                     conn.disconnect();
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
+
             }
         });
+
         thread.start();
+        return responsepost[0];
     }
 }

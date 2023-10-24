@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -27,9 +30,15 @@ import com.example.suksesinvent.adapters.ItemSearchAdapter;
 import com.example.suksesinvent.databinding.FragmentGalleryBinding;
 import com.example.suksesinvent.model.GrocierPriceModel;
 import com.example.suksesinvent.model.ItemsModelSales;
+import com.example.suksesinvent.network.Connection;
 import com.example.suksesinvent.ui.home.HomeFragment;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class GalleryFragment extends Fragment {
@@ -40,29 +49,41 @@ public class GalleryFragment extends Fragment {
     public static ArrayList<GrocierPriceModel> dataGrocierPrice = new ArrayList<>();
     public ArrayList<GrocierPriceModel> _dataArrayGrocierPrice = new ArrayList<>();
     private String itemCodeString = "";
+    private String _itemCode;
+    private String _itemName;
+    private String _buyingPrice;
+    private String _sellingPrice;
+    private String _itemUnit;
+    EditText itemCode_;
+    EditText itemName_;
+    EditText buyingPrice_;
+    EditText sellingPrice_;
+    EditText itemUnit_ ;
+    EditText itemQTY_;
     @SuppressLint("NotifyDataSetChanged")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         GalleryViewModel galleryViewModel =
                 new ViewModelProvider(this).get(GalleryViewModel.class);
-
+        setHasOptionsMenu(true);
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         rvGrocier = binding.rvMasterGrocierPrice;
         Button btnAddGrocier = binding.btnGrocierPrice;
-        EditText itemCode_ = binding.masterTxtItemCode;
-        EditText itemName_ = binding.masterTxtItemName;
-        EditText buyingPrice_ = binding.masterTxtBuyingPrice;
-        EditText sellingPrice_ = binding.masterTxtSellingPrice;
-        EditText itemUnit_ = binding.masterTxtSatuan;
+        itemCode_ = binding.masterTxtItemCode;
+        itemName_ = binding.masterTxtItemName;
+        buyingPrice_ = binding.masterTxtBuyingPrice;
+        sellingPrice_ = binding.masterTxtSellingPrice;
+        itemUnit_ = binding.masterTxtSatuan;
+        itemQTY_ = binding.masterTxtQTY;
         btnAddGrocier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String _itemCode = itemCode_.getText().toString();
-                String _itemName = itemName_.getText().toString();
-                String _buyingPrice = buyingPrice_.getText().toString();
-                String _sellingPrice = sellingPrice_.getText().toString();
-                String _itemUnit = itemUnit_.getText().toString();
+                 _itemCode = itemCode_.getText().toString();
+                 _itemName = itemName_.getText().toString();
+                 _buyingPrice = buyingPrice_.getText().toString();
+                 _sellingPrice = sellingPrice_.getText().toString();
+                 _itemUnit = itemUnit_.getText().toString();
 
                 if(_itemName.matches("") || _itemUnit.matches("") || _buyingPrice.matches("") || _sellingPrice.matches("")){
                     Toast.makeText(getContext(), "Kolom harus diisi...",
@@ -126,7 +147,102 @@ public class GalleryFragment extends Fragment {
         }
         return root;
     }
-//
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.save_menu_input_invent, menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.action_save_invent){
+            View myView = getView();
+
+            _itemCode = itemCode_.getText().toString();
+            _itemName = itemName_.getText().toString();
+            _buyingPrice = buyingPrice_.getText().toString();
+            _sellingPrice = sellingPrice_.getText().toString();
+            _itemUnit = itemUnit_.getText().toString();
+            try {
+                if (_itemCode.matches("")){
+                    itemCodeString = firstLetterWord(_itemName);
+                }else{
+                    itemCodeString = _itemCode;
+                }
+
+                String response = SaveInventory(itemCodeString,_itemName,_buyingPrice,_sellingPrice,_itemUnit);
+                if(dataGrocierPrice.size() != 0){
+                    String price = SavePriceGrocier();
+                }
+                ClearView();
+                Toast.makeText(getContext(),"Data berhasil disimpan",Toast.LENGTH_LONG).show();
+            } catch (JSONException | IOException e) {
+                throw new RuntimeException(e);
+            }
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private String SaveInventory(String _code,String _name, String _buy, String _sell, String _unit) throws JSONException, IOException {
+
+        JSONArray jsonInvent= new JSONArray();
+        JSONObject myJObject = new JSONObject();
+        myJObject.put("code",_code);
+        myJObject.put("name",_name);
+        myJObject.put("buying",_buy);
+        myJObject.put("selling",_sell);
+        myJObject.put("unit",_unit);
+        jsonInvent.put(myJObject);
+
+        Connection myUriBuilder = new Connection();
+        //URL myAddress =  myUriBuilder.buildURL("https://senang.mimoapps.xyz/apis/savedetail.php");
+        return myUriBuilder.postJSON("https://mimoapps.xyz/sukses/apis/savedetail.php",jsonInvent.toString());
+    }
+
+    private String SavePriceGrocier() throws JSONException, IOException {
+        String mString="";
+        JSONArray jsonPrice= new JSONArray();
+        for(int i=0;i<dataGrocierPrice.size();i++){
+            JSONObject myJObjectPrice = new JSONObject();
+            myJObjectPrice.put("code",itemCodeString);
+            myJObjectPrice.put("qty",dataGrocierPrice.get(i).getItemQty());
+            myJObjectPrice.put("selling",dataGrocierPrice.get(i).getItemPrice());
+            jsonPrice.put(myJObjectPrice);
+        }
+
+        Connection myUriBuilder = new Connection();
+        //URL myAddress =  myUriBuilder.buildURL("https://senang.mimoapps.xyz/apis/savedetail.php");
+        myUriBuilder.postJSON("https://mimoapps.xyz/sukses/apis/savegrocierprice.php",jsonPrice.toString());
+        return mString;
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private void ClearView(){
+        itemCodeString="";
+        itemCode_.setText(null);
+        itemName_.setText(null);
+        itemUnit_.setText(null);
+        buyingPrice_.setText(null);
+        sellingPrice_.setText(null);
+        itemQTY_.setText(null);
+        if(dataGrocierPrice.size()>0){
+            for(int pos=0;pos<dataGrocierPrice.size();pos++){
+                dataGrocierPrice.remove(pos);
+                adapterGrocierPrice.notifyItemRemoved(pos);
+
+                //adapterGrocierPrice.notifyItemRemoved(pos+1);
+            }
+        }
+        dataGrocierPrice = new ArrayList<>();
+        adapterGrocierPrice = new GrocierPriceAdapter(getContext(),dataGrocierPrice);
+        rvGrocier.setAdapter(null);
+        rvGrocier.setAdapter(adapterGrocierPrice);
+
+
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -146,10 +262,6 @@ public class GalleryFragment extends Fragment {
             {
                 v = true;
             }
-
-            // Else check if v is true or not.
-            // If true, copy character in output
-            // string and set v as false.
             else if (str.charAt(i) != ' ' && v == true)
             {
                 result += (str.charAt(i));
@@ -158,10 +270,8 @@ public class GalleryFragment extends Fragment {
         }
         int min = 1000; // Minimum value of range
         int max = 2000; // Maximum value of range
-        // Print the min and max
-        // Generate random int value from min to max
+
         int random_int = (int)Math.floor(Math.random() * (max - min + 1) + min);
-        // Printing the generated random numbers
         String rndNumber = String.valueOf(random_int);
 
         return result+rndNumber;

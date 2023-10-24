@@ -110,7 +110,7 @@
 
         <TextView
             android:id="@+id/txtUnit"
-            android:layout_width="101dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtBuyingPrice"
             android:layout_marginStart="102dp"
@@ -139,11 +139,11 @@
 
         <TextView
             android:id="@+id/txtQTY"
-            android:layout_width="106dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtUnit"
-            android:layout_marginStart="135dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="137dp"
+            android:layout_marginTop="5dp"
             android:layout_toEndOf="@+id/lblQTY"
             android:maxLength="30"
             android:paddingStart="10dp"

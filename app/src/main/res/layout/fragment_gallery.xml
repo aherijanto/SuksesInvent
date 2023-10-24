@@ -157,16 +157,7 @@
         android:windowSoftInputMode="adjustPan|adjustResize" />
 <!--    </LinearLayout>-->
 
-    <Button
-        android:id="@+id/btnSaveItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rvMasterGrocierPrice"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="1dp"
-        android:text="@string/save_item"
-        />
+
 
 
 </RelativeLayout>
