@@ -2,6 +2,8 @@ package com.example.suksesinvent.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -13,13 +15,21 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.suksesinvent.CartActivity;
+import com.example.suksesinvent.MainActivity;
 import com.example.suksesinvent.R;
 import com.example.suksesinvent.interfaces.RecyclerViewClickListener;
 import com.example.suksesinvent.interfaces.onClickedItem;
 import com.example.suksesinvent.model.ItemsModelSales;
+import com.example.suksesinvent.ui.gallery.GalleryFragment;
 import com.example.suksesinvent.ui.home.HomeFragment;
+import com.example.suksesinvent.ui.slideshow.SlideshowFragment;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -60,23 +70,28 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
                 public void onClick(View view) {
                     int pos = getAdapterPosition();
                     if(pos!=RecyclerView.NO_POSITION){
-//                        ItemsModelSales clickeddataItem = itemListmimo.get(pos);
-//                        String myitemcode = clickeddataItem.get_itemCode();
-//                        String myitemname = clickeddataItem.get_itemName();
-//                        String myitemsatuan = clickeddataItem.get_itemUnit();
-//                        int myitemprice = clickeddataItem.get_itemPrice();
-//                        double myitemqty = clickeddataItem.get_itemQTY();
-//
-//                        ItemsModelSales ssetOrderCart = new ItemsModelSales();
-//                        ssetOrderCart.set_itemCode(myitemcode);
-//                        ssetOrderCart.set_itemName(myitemname);
-//                        ssetOrderCart.set_itemPrice(myitemprice);
-//                        ssetOrderCart.set_itemQTY(myitemqty);
-//                        ssetOrderCart.set_itemUnit(myitemsatuan);
-//
-//                        HomeFragment.dataCart.add(ssetOrderCart);
-                        Snackbar.make(view, "Position is : " + pos, Snackbar.LENGTH_LONG).show();
-                        //System.out.println(HomeFragment.dataCart.get(0));
+                        Bundle myBundleItem = new Bundle();
+                        ItemsModelSales clickeddataItem = itemListmimo.get(pos);
+                        String myitemcode = clickeddataItem.get_itemCode();
+                        String myitemname = clickeddataItem.get_itemName();
+                        String myitemsatuan = clickeddataItem.get_itemUnit();
+                        int myitembuyingprice = clickeddataItem.get_itemBuyingPrice();
+                        int myitemsellingprice = clickeddataItem.get_itemPrice();
+                        double myitemqty = clickeddataItem.get_itemQTY();
+
+                        ItemsModelSales setDetail = new ItemsModelSales();
+                        setDetail.set_itemCode(myitemcode);
+                        setDetail.set_itemName(myitemname);
+                        setDetail.set_itemBuyingPrice(myitembuyingprice);
+                        setDetail.set_itemPrice(myitemsellingprice);
+                        setDetail.set_itemQTY(myitemqty);
+                        setDetail.set_itemUnit(myitemsatuan);
+
+                        ArrayList<ItemsModelSales> ArrayDetailItem = new ArrayList<>();
+                        ArrayDetailItem.add(setDetail);
+                        myBundleItem.putSerializable("MyDetail",ArrayDetailItem);
+                        NavController navController = Navigation.findNavController(view);
+                        navController.navigate(R.id.nav_gallery, myBundleItem);
                     }
                 }
             });
@@ -94,9 +109,6 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
     @SuppressLint("DefaultLocale")
     @Override
     public void onBindViewHolder(@NonNull ItemListAdapter.ItemListViewHolder holder, int position) {
-//        Random rnd = new Random();
-//        int currentColor = Color.argb(255, rnd.nextInt(300), rnd.nextInt(256), rnd.nextInt(256));
-//        holder.card.setCardBackgroundColor(currentColor);
         holder._textItemCode.setText(itemListmimo.get(position).get_itemCode());
         holder._textItemName.setText(itemListmimo.get(position).get_itemName());
         holder._textItemSellingPrice.setText(String.format("%,d",itemListmimo.get(position).get_itemPrice()));

@@ -42,12 +42,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class GalleryFragment extends Fragment {
-
     private FragmentGalleryBinding binding;
     public RecyclerView rvGrocier;
     private GrocierPriceAdapter adapterGrocierPrice;
     public static ArrayList<GrocierPriceModel> dataGrocierPrice = new ArrayList<>();
-    public ArrayList<GrocierPriceModel> _dataArrayGrocierPrice = new ArrayList<>();
+    public static ArrayList<ItemsModelSales> _dataDetail= new ArrayList<>();
     private String itemCodeString = "";
     private String _itemCode;
     private String _itemName;
@@ -76,6 +75,18 @@ public class GalleryFragment extends Fragment {
         sellingPrice_ = binding.masterTxtSellingPrice;
         itemUnit_ = binding.masterTxtSatuan;
         itemQTY_ = binding.masterTxtQTY;
+
+
+        //_dataDetail = getArguments().getParcelableArrayList("MyDetail");
+        if(getArguments()!=null){
+            _dataDetail = (ArrayList<ItemsModelSales>) getArguments().getSerializable("MyDetail");
+            itemCode_.setText(_dataDetail.get(0).get_itemCode());
+            itemName_.setText(_dataDetail.get(0).get_itemName());
+            buyingPrice_.setText(String.valueOf(_dataDetail.get(0).get_itemBuyingPrice()));
+            sellingPrice_.setText(String.format("%,d",_dataDetail.get(0).get_itemPrice()).toString());
+            itemUnit_.setText(_dataDetail.get(0).get_itemUnit());
+            itemQTY_.setText(String.valueOf(_dataDetail.get(0).get_itemQTY()));
+        }
         btnAddGrocier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
