@@ -214,6 +214,7 @@ public class GalleryFragment extends Fragment {
                 }
 
                 String response = SaveInventory(itemCodeString,_itemName,_buyingPrice,_sellingPrice,_itemUnit);
+                System.out.println(response);
                 if(dataGrocierPrice.size() != 0){
                     String price = SavePriceGrocier();
                 }
@@ -281,7 +282,6 @@ public class GalleryFragment extends Fragment {
         rvGrocier.setAdapter(null);
         rvGrocier.setAdapter(adapterGrocierPrice);
     }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();

@@ -36,34 +36,34 @@ import java.util.ArrayList;
 
 public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemListViewHolder> implements onClickedItem {
     private onClickedItem onClick;
-    private Context mContext;
+    private Context mContextmimo;
     private ArrayList<ItemsModelSales> itemListmimo;
     private static RecyclerViewClickListener itemListener;
 
     public ItemListAdapter(Context xFBContext, ArrayList<ItemsModelSales> itemListmimo){
-        this.mContext = xFBContext;
+        this.mContextmimo = xFBContext;
         this.itemListmimo = itemListmimo;
     }
 
     public class ItemListViewHolder extends RecyclerView.ViewHolder  {
-        private final TextView _textItemCode;
-        private final TextView _textItemName;
-        private final TextView _textItemBuyingPrice;
-        private final TextView _textItemSellingPrice;
-        private final TextView _textItemUnit;
-        private final TextView _textItemQTY;
-        private CardView card;
+        private final TextView _textItemCodeMimo;
+        private final TextView _textItemNameMimo;
+        private final TextView _textItemBuyingPriceMimo;
+        private final TextView _textItemSellingPriceMimo;
+        private final TextView _textItemUnitMimo;
+        private final TextView _textItemQTYMimo;
+        private CardView cardMimo;
 
         public ItemListViewHolder(@NonNull View itemView) {
             super(itemView);
-            _textItemCode = (TextView) itemView.findViewById(com.example.suksesinvent.R.id.txtItemCode);
-            _textItemName = (TextView) itemView.findViewById(com.example.suksesinvent.R.id.txtItemName);
-            _textItemSellingPrice = (TextView) itemView.findViewById(com.example.suksesinvent.R.id.txtPrice);
-            _textItemBuyingPrice = (TextView) itemView.findViewById(R.id.txtBuyingPrice);
-            _textItemUnit = (TextView)  itemView.findViewById((com.example.suksesinvent.R.id.txtUnit));
-           _textItemQTY = (TextView) itemView.findViewById(R.id.txtQTY);
-            card = (CardView) itemView.findViewById(R.id.card_item_search);
-           card.setOnClickListener(new View.OnClickListener(){
+            _textItemCodeMimo = (TextView) itemView.findViewById(R.id.txtItemCodeMimo);
+            _textItemNameMimo = (TextView) itemView.findViewById(R.id.txtItemNameMimo);
+            _textItemSellingPriceMimo = (TextView) itemView.findViewById(R.id.txtPriceMimo);
+            _textItemBuyingPriceMimo = (TextView) itemView.findViewById(R.id.txtBuyingPriceMimo);
+            _textItemUnitMimo = (TextView)  itemView.findViewById((R.id.txtUnitMimo));
+           _textItemQTYMimo = (TextView) itemView.findViewById(R.id.txtQTYMimo);
+            cardMimo = (CardView) itemView.findViewById(R.id.card_item_search);
+           cardMimo.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {
                     int pos = getAdapterPosition();
@@ -107,12 +107,12 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
     @SuppressLint("DefaultLocale")
     @Override
     public void onBindViewHolder(@NonNull ItemListAdapter.ItemListViewHolder holder, int position) {
-        holder._textItemCode.setText(itemListmimo.get(position).get_itemCode());
-        holder._textItemName.setText(itemListmimo.get(position).get_itemName());
-        holder._textItemSellingPrice.setText(String.format("%,d",itemListmimo.get(position).get_itemPrice()));
-        holder._textItemBuyingPrice.setText(String.format("%,d",itemListmimo.get(position).get_itemBuyingPrice()));
-        holder._textItemUnit.setText(itemListmimo.get(position).get_itemUnit());
-        holder._textItemQTY.setText(String.valueOf(itemListmimo.get(position).get_itemQTY()));
+        holder._textItemCodeMimo.setText(itemListmimo.get(position).get_itemCode());
+        holder._textItemNameMimo.setText(itemListmimo.get(position).get_itemName());
+        holder._textItemSellingPriceMimo.setText(String.format("%,d",itemListmimo.get(position).get_itemPrice()));
+        holder._textItemBuyingPriceMimo.setText(String.format("%,d",itemListmimo.get(position).get_itemBuyingPrice()));
+        holder._textItemUnitMimo.setText(itemListmimo.get(position).get_itemUnit());
+        holder._textItemQTYMimo.setText(String.valueOf(itemListmimo.get(position).get_itemQTY()));
     }
 
     @Override

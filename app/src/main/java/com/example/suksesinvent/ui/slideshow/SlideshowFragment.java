@@ -59,7 +59,7 @@ public class SlideshowFragment extends Fragment {
             btnSearchItemMimo.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    new SlideshowFragment.FetchItemList().execute();
+                    new SlideshowFragment.FetchItemListMimo().execute();
                 }
             });
         } else {
@@ -78,7 +78,7 @@ public class SlideshowFragment extends Fragment {
         binding = null;
     }
 
-    public class FetchItemList extends AsyncTask<String,Void,ArrayList<ItemsModelSales>> {
+    public class FetchItemListMimo extends AsyncTask<String,Void,ArrayList<ItemsModelSales>> {
         @Override
         protected ArrayList<ItemsModelSales> doInBackground(String... params) {
             URL ItemDataUrl = Connection.buildURL("https://mimoapps.xyz/sukses/apis/getitemlist_sukses.php?itemname=" + txtSearchItemMimo.getText().toString());
