@@ -1,5 +1,6 @@
 package com.example.suksesinvent.ui.slideshow;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -31,12 +32,12 @@ public class SlideshowFragment extends Fragment {
     private FragmentSlideshowBinding binding;
     private ItemListAdapter adapterItemListMimo;
     public static ArrayList<ItemsModelSales> dataItemListmimo;
-    public static ArrayList<ItemsModelSales> dataCartmimo = new ArrayList<>();
-    private EditText txtSearchItem;
-    private Button btnSearchItem;
+    private EditText txtSearchItemMimo;
+    private Button btnSearchItemMimo;
     private RecyclerView rvItemListMimo;
 
 
+    @SuppressLint("NotifyDataSetChanged")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         SlideshowViewModel slideshowViewModel =
@@ -44,9 +45,9 @@ public class SlideshowFragment extends Fragment {
 
         binding = FragmentSlideshowBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        txtSearchItem = binding.txtSearchItem;
-        btnSearchItem = binding.btnSearch;
-        rvItemListMimo = binding.rvItemList;
+        txtSearchItemMimo = binding.txtSearchItemMimo;
+        btnSearchItemMimo = binding.btnSearchMimo;
+        rvItemListMimo = binding.rvItemListMimo;
 
         dataItemListmimo = new ArrayList<>();
         adapterItemListMimo = new ItemListAdapter(getContext(),dataItemListmimo);
@@ -55,7 +56,7 @@ public class SlideshowFragment extends Fragment {
         adapterItemListMimo.notifyDataSetChanged();
 
         if (savedInstanceState == null) {
-            btnSearchItem.setOnClickListener( new View.OnClickListener() {
+            btnSearchItemMimo.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     new SlideshowFragment.FetchItemList().execute();
@@ -80,7 +81,7 @@ public class SlideshowFragment extends Fragment {
     public class FetchItemList extends AsyncTask<String,Void,ArrayList<ItemsModelSales>> {
         @Override
         protected ArrayList<ItemsModelSales> doInBackground(String... params) {
-            URL ItemDataUrl = Connection.buildURL("https://mimoapps.xyz/sukses/apis/getitemlist_sukses.php?itemname=" + txtSearchItem.getText().toString());
+            URL ItemDataUrl = Connection.buildURL("https://mimoapps.xyz/sukses/apis/getitemlist_sukses.php?itemname=" + txtSearchItemMimo.getText().toString());
             //https://senang.mimoapps.xyz/apis/getlistitems.php?itemname=
 
             try {

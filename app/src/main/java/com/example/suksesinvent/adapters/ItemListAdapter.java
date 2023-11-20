@@ -62,9 +62,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemLi
             _textItemBuyingPrice = (TextView) itemView.findViewById(R.id.txtBuyingPrice);
             _textItemUnit = (TextView)  itemView.findViewById((com.example.suksesinvent.R.id.txtUnit));
            _textItemQTY = (TextView) itemView.findViewById(R.id.txtQTY);
-
             card = (CardView) itemView.findViewById(R.id.card_item_search);
-
            card.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view) {

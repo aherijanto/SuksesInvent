@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -26,12 +27,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.suksesinvent.R;
 import com.example.suksesinvent.adapters.GrocierPriceAdapter;
+import com.example.suksesinvent.adapters.ItemListAdapter;
 import com.example.suksesinvent.adapters.ItemSearchAdapter;
 import com.example.suksesinvent.databinding.FragmentGalleryBinding;
+import com.example.suksesinvent.json.GrocierPriceJSon;
+import com.example.suksesinvent.json.ItemSalesJSON;
 import com.example.suksesinvent.model.GrocierPriceModel;
 import com.example.suksesinvent.model.ItemsModelSales;
 import com.example.suksesinvent.network.Connection;
 import com.example.suksesinvent.ui.home.HomeFragment;
+import com.example.suksesinvent.ui.slideshow.SlideshowFragment;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
@@ -39,6 +44,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class GalleryFragment extends Fragment {
@@ -75,9 +81,8 @@ public class GalleryFragment extends Fragment {
         sellingPrice_ = binding.masterTxtSellingPrice;
         itemUnit_ = binding.masterTxtSatuan;
         itemQTY_ = binding.masterTxtQTY;
+        ClearView();
 
-
-        //_dataDetail = getArguments().getParcelableArrayList("MyDetail");
         if(getArguments()!=null){
             _dataDetail = (ArrayList<ItemsModelSales>) getArguments().getSerializable("MyDetail");
             itemCode_.setText(_dataDetail.get(0).get_itemCode());
@@ -86,7 +91,9 @@ public class GalleryFragment extends Fragment {
             sellingPrice_.setText(String.format("%,d",_dataDetail.get(0).get_itemPrice()).toString());
             itemUnit_.setText(_dataDetail.get(0).get_itemUnit());
             itemQTY_.setText(String.valueOf(_dataDetail.get(0).get_itemQTY()));
+            new getGrocierPriceList().execute();
         }
+
         btnAddGrocier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,6 +166,32 @@ public class GalleryFragment extends Fragment {
         return root;
     }
 
+    public class getGrocierPriceList extends AsyncTask<String,Void,ArrayList<GrocierPriceModel>> {
+        @Override
+        protected ArrayList<GrocierPriceModel> doInBackground(String... params) {
+            String itemCode = itemCode_.getText().toString();
+            URL ItemDataUrl = Connection.buildURL("https://mimoapps.xyz/sukses/apis/getgrocierprice_sukses.php?itemcode=" + itemCode);
+            //https://senang.mimoapps.xyz/apis/getlistitems.php?itemname=
+
+            try {
+                String priceListResponse = Connection.getResponseFromHttpUrl(ItemDataUrl);
+                System.out.println(priceListResponse);
+                return GrocierPriceJSon.GetItemList(getActivity().getApplicationContext(), priceListResponse);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        protected void onPostExecute(ArrayList<GrocierPriceModel> strings) {
+            if (strings != null) {
+                adapterGrocierPrice = new GrocierPriceAdapter(getContext(),strings);
+                rvGrocier.setAdapter(adapterGrocierPrice);
+                dataGrocierPrice=strings;
+            }
+        }
+    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.save_menu_input_invent, menu);
@@ -166,10 +199,8 @@ public class GalleryFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         if(id == R.id.action_save_invent){
             View myView = getView();
-
             _itemCode = itemCode_.getText().toString();
             _itemName = itemName_.getText().toString();
             _buyingPrice = buyingPrice_.getText().toString();
@@ -197,7 +228,6 @@ public class GalleryFragment extends Fragment {
     }
 
     private String SaveInventory(String _code,String _name, String _buy, String _sell, String _unit) throws JSONException, IOException {
-
         JSONArray jsonInvent= new JSONArray();
         JSONObject myJObject = new JSONObject();
         myJObject.put("code",_code);
@@ -241,7 +271,7 @@ public class GalleryFragment extends Fragment {
         if(dataGrocierPrice.size()>0){
             for(int pos=0;pos<dataGrocierPrice.size();pos++){
                 dataGrocierPrice.remove(pos);
-                adapterGrocierPrice.notifyItemRemoved(pos);
+//                adapterGrocierPrice.notifyItemRemoved(pos);
 
                 //adapterGrocierPrice.notifyItemRemoved(pos+1);
             }
@@ -250,8 +280,6 @@ public class GalleryFragment extends Fragment {
         adapterGrocierPrice = new GrocierPriceAdapter(getContext(),dataGrocierPrice);
         rvGrocier.setAdapter(null);
         rvGrocier.setAdapter(adapterGrocierPrice);
-
-
     }
 
     @Override
