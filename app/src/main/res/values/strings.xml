@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">SuksesInvent</string>
+    <string name="app_name">MiniPOS</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Sukses Invent</string>
-    <string name="nav_header_subtitle">by Cappa Database Tech</string>
+    <string name="nav_header_title">Mimo Mini POS</string>
+    <string name="nav_header_subtitle">by Mimo Apps</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
