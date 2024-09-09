@@ -45,6 +45,7 @@ public class SlideshowFragment extends Fragment {
 
         binding = FragmentSlideshowBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
         txtSearchItemMimo = binding.txtSearchItemMimo;
         btnSearchItemMimo = binding.btnSearchMimo;
         rvItemListMimo = binding.rvItemListMimo;
