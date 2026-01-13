@@ -15,45 +15,44 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="199dp">
 
         <TextView
+            android:id="@+id/txtItemCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtItemCode"
-            android:text="@string/txtitemcode"
-            android:textSize="20sp"
-            android:textStyle="bold"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
+            android:text="@string/txtitemcode"
             android:textAllCaps="true"
             android:textColor="@color/purple_700"
-            />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/txtItemName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtItemName"
             android:layout_below="@+id/txtItemCode"
-            android:textSize="20sp"
-            android:text="@string/item_name"
             android:layout_marginStart="10dp"
-            android:textStyle="bold"
-            android:textAllCaps="true"
             android:layout_marginTop="5dp"
-            android:textColor="@color/purple_500"/>
+            android:text="@string/item_name"
+            android:textAllCaps="true"
+            android:textColor="@color/purple_500"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/lblPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/lblPrice"
             android:layout_below="@+id/txtItemName"
-            android:text="@string/harga"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="4dp"
             android:layout_marginStart="10dp"
-            />
+            android:layout_marginTop="4dp"
+            android:text="@string/harga"
+            android:textColor="@color/purple_500"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtPrice"
@@ -64,20 +63,22 @@
             android:layout_marginTop="5dp"
             android:layout_toEndOf="@+id/lblPrice"
             android:text="@string/txtprice"
+            android:textColor="@color/purple_500"
             android:textAlignment="textEnd"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/lblUnit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/lblUnit"
             android:layout_below="@+id/lblPrice"
-            android:text="@string/satuan"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
-            android:layout_marginStart="10dp"/>
+            android:text="@string/satuan"
+            android:textColor="@color/purple_500"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtUnit"
@@ -88,23 +89,24 @@
             android:layout_marginTop="5dp"
             android:layout_toEndOf="@+id/lblUnit"
             android:text="@string/txtunit"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:textColor="@color/purple_500"
             android:textAlignment="textEnd"
             android:textAllCaps="true"
-            />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/lblQTY"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/lblQTY"
             android:layout_below="@+id/lblUnit"
-            android:text="@string/qty"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_marginTop="5dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
+            android:text="@string/qty"
+            android:textColor="@color/purple_500"
+            android:textSize="20sp"
+            android:textStyle="bold"
 
             />
 
@@ -117,26 +119,25 @@
             android:layout_marginTop="5dp"
             android:layout_toEndOf="@+id/lblQTY"
             android:background="@drawable/rounded_textbox_search"
+            android:inputType="numberDecimal"
             android:maxLength="30"
             android:paddingStart="10dp"
             android:paddingEnd="15dp"
             android:text="@string/_0"
+            android:textColor="@color/purple_500"
             android:textAlignment="textEnd"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:inputType="numberDecimal"
-            />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnAddToCart"
             android:layout_width="60dp"
             android:layout_height="65dp"
-            android:layout_marginTop="-10dp"
-            android:text="@string/plus_sign"
-            android:backgroundTint="@color/background_button_add"
             android:layout_alignParentEnd="true"
-            android:textSize="18sp"
-            />
+            android:layout_marginTop="-10dp"
+            android:backgroundTint="@color/background_button_add"
+            android:text="@string/plus_sign"
+            android:textSize="18sp" />
 
     </RelativeLayout>
 

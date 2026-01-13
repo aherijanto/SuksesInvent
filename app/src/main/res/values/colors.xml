@@ -11,4 +11,6 @@
     <color name="background_button_add">#A63535</color>
     <color name="background_card_grocier">#eae2b7</color>
 
+    <color name="soft_white">#FAFAFA</color>
+    <color name="soft_black">#212121</color>
 </resources>

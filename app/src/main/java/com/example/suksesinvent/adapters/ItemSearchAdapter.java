@@ -119,7 +119,8 @@ public class ItemSearchAdapter extends RecyclerView.Adapter<ItemSearchAdapter.It
         holder._textItemName.setText(itemList.get(position).get_itemName());
         holder._textItemPrice.setText(String.format("%,d",itemList.get(position).get_itemPrice()));
         holder._textItemUnit.setText(itemList.get(position).get_itemUnit());
-        holder._textItemQTY.setText(String.valueOf(itemList.get(position).get_itemQTY()));
+        //holder._textItemQTY.setText(String.valueOf(itemList.get(position).get_itemQTY()));
+        holder._textItemQTY.setText("1.0");
     }
 
     @Override

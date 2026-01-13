@@ -56,8 +56,8 @@ public class MemberFragment extends Fragment {
         barcodeImageView.setImageBitmap(barcodeBitmap);
 
 
-        int width_qr = 200;
-        int height_qr = 200;
+        int width_qr = 300;
+        int height_qr = 400;
 
         try {
             Bitmap qrCodeBitmap = QRCodeGenerator.generateQrCode(data,width_qr,height_qr);

@@ -9,6 +9,11 @@
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
+
+        <!-- Background and Font colors (Keeping it dark-friendly but respecting the request for soft theme) -->
+        <item name="android:windowBackground">#121212</item>
+        <item name="android:textColor">#E1E1E1</item>
+
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->

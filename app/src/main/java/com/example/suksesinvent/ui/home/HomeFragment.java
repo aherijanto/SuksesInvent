@@ -8,17 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.suksesinvent.R;
 import com.example.suksesinvent.adapters.ItemSearchAdapter;
 import com.example.suksesinvent.databinding.FragmentHomeBinding;
 import com.example.suksesinvent.json.ItemSalesJSON;
@@ -33,7 +29,7 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private RecyclerView rvItemList;
     private ItemSearchAdapter adapterItemList;
-    public static ArrayList<ItemsModelSales> dataItemList;
+    public static ArrayList<ItemsModelSales> dataItemList = new ArrayList<>();
     public static ArrayList<ItemsModelSales> dataCart = new ArrayList<>();
     private EditText txtSearchItem;
     private Button btnSearchItem;
@@ -46,28 +42,25 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        
         txtSearchItem = binding.txtSearchItem;
         btnSearchItem = binding.btnSearch;
         rvItemList = binding.rvItemSales;
 
-        dataItemList = new ArrayList<>();
-        adapterItemList = new ItemSearchAdapter(getContext(),dataItemList);
+        // Initialize adapter with the static list to maintain state when navigating back
+        adapterItemList = new ItemSearchAdapter(getContext(), dataItemList);
         rvItemList.setLayoutManager(new LinearLayoutManager(getContext()));
         rvItemList.setAdapter(adapterItemList);
-        adapterItemList.notifyDataSetChanged();
 
+        // ALWAYS set the click listener so it works every time the view is created
+        btnSearchItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String query = txtSearchItem.getText().toString();
+                new FetchItemList().execute(query);
+            }
+        });
 
-        if (savedInstanceState == null) {
-            btnSearchItem.setOnClickListener( new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    new FetchItemList().execute();
-                }
-            });
-        } else {
-            //ArrayList parcelRecipe = savedInstanceState.getParcelableArrayList(MY_KEY);
-            rvItemList.setAdapter(new ItemSearchAdapter(getContext(), dataItemList));
-        }
         return root;
     }
 
@@ -77,27 +70,31 @@ public class HomeFragment extends Fragment {
         binding = null;
     }
 
-    public class FetchItemList extends AsyncTask<String,Void,ArrayList<ItemsModelSales>> {
+    public class FetchItemList extends AsyncTask<String, Void, ArrayList<ItemsModelSales>> {
         @Override
         protected ArrayList<ItemsModelSales> doInBackground(String... params) {
-            URL ItemDataUrl = Connection.buildURL("https://mimoapps.xyz/sukses/apis/getitemlist_sukses.php?itemname=" + txtSearchItem.getText().toString());
-            //https://senang.mimoapps.xyz/apis/getlistitems.php?itemname=
+            String searchQuery = (params != null && params.length > 0) ? params[0] : "";
+            URL ItemDataUrl = Connection.buildURL("https://mimoapps.xyz/sukses/apis/getitemlist_sukses.php?itemname=" + searchQuery);
             try {
                 String ItemListResponse = Connection.getResponseFromHttpUrl(ItemDataUrl);
-                return ItemSalesJSON.GetItemList(getActivity().getApplicationContext(), ItemListResponse);
+                if (getActivity() != null) {
+                    return ItemSalesJSON.GetItemList(getActivity().getApplicationContext(), ItemListResponse);
+                }
+                return null;
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;
             }
         }
 
-        protected void onPostExecute(ArrayList<ItemsModelSales> strings) {
-            if (strings != null) {
-                adapterItemList = new ItemSearchAdapter(getContext(),strings);
-                rvItemList.setAdapter(adapterItemList);
-                dataItemList=strings;
+        @SuppressLint("NotifyDataSetChanged")
+        protected void onPostExecute(ArrayList<ItemsModelSales> result) {
+            // Check isAdded() to ensure fragment is still attached
+            if (result != null && isAdded()) {
+                dataItemList.clear();
+                dataItemList.addAll(result);
+                adapterItemList.notifyDataSetChanged();
             }
         }
     }
-
 }

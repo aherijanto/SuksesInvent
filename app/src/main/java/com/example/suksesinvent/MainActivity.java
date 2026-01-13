@@ -16,6 +16,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.suksesinvent.databinding.ActivityMainBinding;
 
@@ -26,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Force Light Mode
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -73,23 +77,4 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
-
-//    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//        @Override
-//        public void onClick(View view) {
-//            if(dataCart.size() == 0){
-//                Snackbar.make(view, "Sorry, No Data", Snackbar.LENGTH_LONG)
-//                        .setAction("Cart List", null).show();
-//            }else{
-//                Bundle myBundleCart = new Bundle();
-//                myBundleCart.putParcelableArrayList("MY_CART",dataCart);
-//                Intent myIntent = new Intent(MainActivity.this,CartActivity.class);
-//                myIntent.putExtras(myBundleCart);
-//                startActivity(myIntent);
-//            }
-//
-//        }
-//    });
 }
