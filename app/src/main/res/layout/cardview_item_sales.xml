@@ -5,41 +5,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_item_sales"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="12dp"
     app:cardUseCompatPadding="true"
-    android:elevation="5dp"
-    android:background="@color/purple_200"
-    app:cardBackgroundColor="@color/background_card_view"
-    app:cardElevation="5dp"
-    android:paddingBottom="10dp">
+    app:cardBackgroundColor="@color/soft_blue"
+    app:cardElevation="4dp"
+    android:layout_margin="8dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="199dp">
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Removed app:tint to allow Glide to show the actual product image colors -->
+        <ImageView
+            android:id="@+id/imageProduct"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/inventory"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/txtItemCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
             android:text="@string/txtitemcode"
             android:textAllCaps="true"
-            android:textColor="@color/purple_700"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textColor="@color/soft_black"
+            android:textSize="12sp"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/txtItemName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtItemCode"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/imageProduct"
+            android:layout_marginStart="12dp"
             android:text="@string/item_name"
             android:textAllCaps="true"
-            android:textColor="@color/purple_500"
-            android:textSize="20sp"
+            android:textColor="@color/soft_black"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -47,99 +53,88 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtItemName"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="4dp"
+            android:layout_toEndOf="@id/imageProduct"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
             android:text="@string/harga"
-            android:textColor="@color/purple_500"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textColor="@color/soft_black"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/txtPrice"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtItemName"
-            android:layout_marginStart="63dp"
-            android:layout_marginTop="5dp"
-            android:layout_toEndOf="@+id/lblPrice"
-            android:text="@string/txtprice"
-            android:textColor="@color/purple_500"
-            android:textAlignment="textEnd"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/lblUnit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lblPrice"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:text="@string/satuan"
-            android:textColor="@color/purple_500"
-            android:textSize="18sp"
+            android:layout_below="@+id/txtItemName"
+            android:layout_toEndOf="@+id/lblPrice"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/txtprice"
+            android:textColor="@color/purple_700"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtUnit"
-            android:layout_width="101dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtPrice"
-            android:layout_marginStart="54dp"
-            android:layout_marginTop="5dp"
-            android:layout_toEndOf="@+id/lblUnit"
-            android:text="@string/txtunit"
-            android:textColor="@color/purple_500"
-            android:textAlignment="textEnd"
-            android:textAllCaps="true"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/lblQTY"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lblUnit"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
-            android:text="@string/qty"
-            android:textColor="@color/purple_500"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:layout_below="@+id/txtPrice"
+            android:layout_toEndOf="@id/imageProduct"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:text="PCS"
+            android:textColor="@color/soft_black"
+            android:textSize="12sp" />
 
-            />
-
-        <EditText
-            android:id="@+id/txtQTY"
-            android:layout_width="106dp"
-            android:layout_height="42dp"
+        <LinearLayout
+            android:id="@+id/layout_qty_controls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/txtUnit"
-            android:layout_marginStart="61dp"
-            android:layout_marginTop="5dp"
-            android:layout_toEndOf="@+id/lblQTY"
-            android:background="@drawable/rounded_textbox_search"
-            android:inputType="numberDecimal"
-            android:maxLength="30"
-            android:paddingStart="10dp"
-            android:paddingEnd="15dp"
-            android:text="@string/_0"
-            android:textColor="@color/purple_500"
-            android:textAlignment="textEnd"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:layout_toEndOf="@id/imageProduct"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <Button
+            <ImageButton
+                android:id="@+id/btnMinus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_minus_circle" />
+
+            <EditText
+                android:id="@+id/txtQTY"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:inputType="number"
+                android:text="1"
+                android:textColor="@color/soft_black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btnPlus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_plus_circle" />
+
+        </LinearLayout>
+
+        <ImageButton
             android:id="@+id/btnAddToCart"
-            android:layout_width="60dp"
-            android:layout_height="65dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="-10dp"
-            android:backgroundTint="@color/background_button_add"
-            android:text="@string/plus_sign"
-            android:textSize="18sp" />
+            android:layout_alignBottom="@+id/layout_qty_controls"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_plus_circle"
+            app:tint="@color/purple_500"
+            android:scaleType="fitCenter" />
 
     </RelativeLayout>
-
 
 </androidx.cardview.widget.CardView>

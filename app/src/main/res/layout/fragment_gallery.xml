@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_marginStart="10dp"
     android:layout_marginEnd="10dp"
+    android:background="@color/soft_white"
     >
 
     <TextView
@@ -17,7 +18,7 @@
         android:labelFor="@+id/master_txtItemCode"
         android:id="@+id/lblItemCode"
         android:text="@string/kode_barang"
-        android:textColor="@color/design_default_color_primary"
+        android:textColor="@color/soft_black"
         />
 
     <EditText
@@ -28,6 +29,7 @@
         android:layout_marginTop="5dp"
         android:inputType="textCapSentences"
         android:autofillHints=""
+        android:textColor="@color/soft_black"
         />
 
     <TextView
@@ -39,7 +41,7 @@
         android:labelFor="@+id/master_txtItemName"
         android:id="@+id/lblItemName"
         android:text="@string/nama_barang"
-        android:textColor="@color/design_default_color_primary"
+        android:textColor="@color/soft_black"
         />
     <EditText
         android:layout_width="match_parent"
@@ -49,7 +51,8 @@
         android:layout_below="@+id/lblItemName"
         android:layout_marginTop="5dp"
         android:autofillHints="ItemName"
-        android:inputType="textCapSentences" />
+        android:inputType="textCapSentences"
+        android:textColor="@color/soft_black" />
 
     <TextView
         android:layout_width="match_parent"
@@ -59,7 +62,7 @@
         android:labelFor="@+id/master_txtBuyingPrice"
         android:id="@+id/lblBuyingPrice"
         android:text="@string/harga_beli"
-        android:textColor="@color/design_default_color_primary"
+        android:textColor="@color/soft_black"
         android:textAllCaps="true"
         />
     <EditText
@@ -69,7 +72,8 @@
         android:layout_below="@+id/lblBuyingPrice"
         android:layout_marginTop="5dp"
         android:autofillHints="ItemName"
-        android:inputType="number" />
+        android:inputType="number"
+        android:textColor="@color/soft_black" />
 
     <TextView
         android:layout_width="match_parent"
@@ -80,7 +84,7 @@
         android:labelFor="@+id/master_txtSellingPricePrice"
         android:id="@+id/lblSellingPrice"
         android:text="@string/harga_jual"
-        android:textColor="@color/design_default_color_primary"
+        android:textColor="@color/soft_black"
         />
 
     <EditText
@@ -90,7 +94,8 @@
         android:layout_below="@+id/lblSellingPrice"
         android:layout_marginTop="5dp"
         android:autofillHints="ItemName"
-        android:inputType="number"/>
+        android:inputType="number"
+        android:textColor="@color/soft_black"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -101,7 +106,7 @@
         android:labelFor="@+id/master_txtSatuan"
         android:id="@+id/lblSatuan"
         android:text="@string/_1"
-        android:textColor="@color/design_default_color_primary"
+        android:textColor="@color/soft_black"
         />
 
     <EditText
@@ -110,7 +115,7 @@
         android:id="@+id/master_txtSatuan"
         android:layout_below="@+id/lblSatuan"
         android:layout_marginTop="5dp"
-
+        android:textColor="@color/soft_black"
         />
 
     <TextView
@@ -122,7 +127,7 @@
         android:labelFor="@+id/master_txtS"
         android:id="@+id/lblQTY"
         android:text="@string/qty_itemdata"
-        android:textColor="@color/design_default_color_primary"
+        android:textColor="@color/soft_black"
         />
 
     <EditText
@@ -132,7 +137,8 @@
         android:layout_below="@+id/lblQTY"
         android:layout_marginTop="5dp"
         android:autofillHints="ItemName"
-        android:inputType=""/>
+        android:inputType=""
+        android:textColor="@color/soft_black"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -143,10 +149,6 @@
         android:text="@string/harga_grosir"
         android:backgroundTint="@color/material_dynamic_tertiary50"
         />
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/btnGrocierPrice">-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMasterGrocierPrice"
@@ -155,9 +157,5 @@
         android:layout_below="@id/btnGrocierPrice"
         android:orientation="horizontal"
         android:windowSoftInputMode="adjustPan|adjustResize" />
-<!--    </LinearLayout>-->
-
-
-
 
 </RelativeLayout>

@@ -21,6 +21,16 @@
 <!--            android:icon="@drawable/ic_menu_groupitem_foreground"-->
 <!--            android:title="@string/daftar_inventory" />-->
         <item
+            android:id="@+id/nav_keranjang"
+            android:icon="@drawable/ic_menu_groupitem_foreground"
+            android:title="@string/menu_keranjang" />
+
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_menu_groupitem_foreground"
+            android:title="@string/menu_history" />
+
+        <item
             android:id="@+id/nav_membership"
             android:icon="@drawable/ic_menu_groupitem_foreground"
             android:title="@string/membership" />

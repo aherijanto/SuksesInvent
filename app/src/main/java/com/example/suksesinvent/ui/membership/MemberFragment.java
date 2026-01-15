@@ -44,7 +44,7 @@ public class MemberFragment extends Fragment {
 
         String data = "MiniPOSbyMimoApps"; // Replace with your data
         int width = 300; // Replace with your desired width
-        int height = 100; // Replace with your desired height
+        int height = 60; // Replace with your desired height
 
         BitMatrix bitMatrix = BarcodeGenerator.generateBarcode(data, width, height);
         Bitmap barcodeBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
@@ -56,8 +56,8 @@ public class MemberFragment extends Fragment {
         barcodeImageView.setImageBitmap(barcodeBitmap);
 
 
-        int width_qr = 300;
-        int height_qr = 400;
+        int width_qr = 1000;
+        int height_qr = 1000;
 
         try {
             Bitmap qrCodeBitmap = QRCodeGenerator.generateQrCode(data,width_qr,height_qr);

@@ -34,4 +34,17 @@
         android:name="com.example.suksesinvent.ui.dashboard.DashFragment"
         android:label="@string/dashboard"
         tools:layout="@layout/fragment_dash" />
+
+    <fragment
+        android:id="@+id/nav_keranjang"
+        android:name="com.example.suksesinvent.ui.shoppingcart.ShoppingCartFragment"
+        android:label="@string/menu_keranjang"
+        tools:layout="@layout/fragment_shoppingcart" />
+
+    <fragment
+        android:id="@+id/nav_history"
+        android:name="com.example.suksesinvent.ui.history.HistoryFragment"
+        android:label="@string/menu_history"
+        tools:layout="@layout/fragment_history" />
+
 </navigation>

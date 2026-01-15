@@ -13,4 +13,8 @@
 
     <color name="soft_white">#FAFAFA</color>
     <color name="soft_black">#212121</color>
+    <color name="soft_blue">#E3F2FD</color>
+    
+    <color name="green_outline">#4CAF50</color>
+    <color name="red_outline">#F44336</color>
 </resources>

@@ -13,6 +13,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
+import javax.net.ssl.HttpsURLConnection;
+
 public class Connection {
     private String USER_AGENT = " Mozilla/5.0";
     private Context mcontext;
@@ -50,40 +52,80 @@ public class Connection {
         }
     }
 
-    public String postJSON(String address, String jsonData) throws IOException {
-        final String[] responsepost = new String[1];
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    URL url = new URL(address);
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("POST");
-                    conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-                    conn.setRequestProperty("Accept","application/json");
-                    conn.setDoOutput(true);
-                    conn.setDoInput(true);
+//    public String postJSON(String address, String jsonData) throws IOException {
+//        final String[] responsepost = new String[1];
+//        Thread thread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    URL url = new URL(address);
+//                    HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+//                    conn.setRequestMethod("POST");
+//                    conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+//                    conn.setRequestProperty("Accept","application/json");
+//                    conn.setDoOutput(true);
+//                    conn.setDoInput(true);
+//
+//                    Log.i("JSON", jsonData.toString());
+//                    DataOutputStream os = new DataOutputStream(conn.getOutputStream());
+//                    os.writeBytes(jsonData.toString());
+//                    os.flush();
+//                    os.close();
+//
+//                    Log.i("STATUS", String.valueOf(conn.getResponseCode()));
+//                    Log.i("MSG" , conn.getResponseMessage());
+//                    responsepost[0] = String.valueOf(conn.getResponseCode());
+//                    conn.disconnect();
+//
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//
+//
+//            }
+//        });
+//
+//        thread.start();
+//        return responsepost[0];
+//    }
+public String postJSON(String address, String jsonData) throws IOException {
+    final String[] responsepost = new String[1];
 
-                    Log.i("JSON", jsonData.toString());
-                    DataOutputStream os = new DataOutputStream(conn.getOutputStream());
-                    os.writeBytes(jsonData.toString());
-                    os.flush();
-                    os.close();
+    Thread thread = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            try {
+                URL url = new URL(address);
+                HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+                conn.setRequestProperty("Accept", "application/json");
+                conn.setDoOutput(true);
+                conn.setDoInput(true);
 
-                    Log.i("STATUS", String.valueOf(conn.getResponseCode()));
-                    Log.i("MSG" , conn.getResponseMessage());
-                    responsepost[0] = String.valueOf(conn.getResponseCode());
-                    conn.disconnect();
+                DataOutputStream os = new DataOutputStream(conn.getOutputStream());
+                os.writeBytes(jsonData);
+                os.flush();
+                os.close();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                responsepost[0] = String.valueOf(conn.getResponseCode());
+                conn.disconnect();
 
-
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        });
+        }
+    });
 
-        thread.start();
-        return responsepost[0];
+    thread.start();
+
+    try {
+        thread.join(); // ✅ WAIT HERE
+    } catch (InterruptedException e) {
+        e.printStackTrace();
     }
+
+    return responsepost[0];
+}
+
 }

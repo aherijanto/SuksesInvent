@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/soft_white"
     tools:context=".ui.home.HomeFragment">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,9 +22,10 @@
             android:layout_marginEnd="5dp"
             android:maxLength="30"
             android:background="@drawable/rounded_textbox_search"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:paddingStart="15dp"
             tools:ignore="RtlSymmetry"
+            android:hint="@string/hint_ketik_nama_barang_disini"
             android:text=""/>
 
         <Button
@@ -48,9 +50,3 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
-
